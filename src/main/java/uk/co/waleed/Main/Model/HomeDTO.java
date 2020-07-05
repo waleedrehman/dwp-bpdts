@@ -1,11 +1,13 @@
 package uk.co.waleed.Main.Model;
 
+import java.util.ArrayList;
+
 public class HomeDTO {
 
     private final long id;
-    private final String content;
+    private final ArrayList content;
 
-    public HomeDTO(long id, String content) {
+    public HomeDTO(long id, ArrayList content) {
         this.id = id;
         this.content = content;
     }
@@ -14,7 +16,7 @@ public class HomeDTO {
         return id;
     }
 
-    public String getContent() {
+    public ArrayList getContent() {
         return content;
     }
 

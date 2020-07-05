@@ -20,6 +20,6 @@ public class HomeController{
         GetCitiesInRadius citiesInRadius = new GetCitiesInRadius(cityName,Integer.parseInt(radius));
         System.out.println(citiesInRadius.getData());
         GetUsersInCities users = new GetUsersInCities(citiesInRadius.getData());
-        return new HomeDTO(counter.incrementAndGet(),"Welcome");
+        return new HomeDTO(counter.incrementAndGet(),users.getData());
     }
 }
