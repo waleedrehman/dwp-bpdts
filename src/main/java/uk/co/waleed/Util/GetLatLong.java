@@ -28,6 +28,8 @@ public class GetLatLong {
             this.latitude = map.get("lat").toString();
             this.longitude = map.get("lon").toString();
         }
+
+        System.out.println(result);
     }
 
     public String getLatitude() {
