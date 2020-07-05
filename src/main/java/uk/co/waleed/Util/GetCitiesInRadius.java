@@ -18,33 +18,29 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class GetCitiesInRadius {
-    private String cityName;
-    private double radius;
+    private GetLatLong latLong;
+    private String xmlData;
+    private static final String host = "www.freemaptools.com";
+    private static final String referer = "https://www.freemaptools.com/find-cities-and-towns-inside-radius.htm";
 
-    public GetCitiesInRadius(String cityName, int radius) {
-        this.cityName = cityName;
-        this.radius = (1.60934 * radius);
-    }
-
-    public String getData() throws IOException {
-        GetLatLong latLong = new GetLatLong(cityName);
-
+    public GetCitiesInRadius(String cityName, int radius) throws IOException {
+        double r = (1.60934 * radius);
+        latLong = new GetLatLong(cityName);
         URL url = new URL("https://www.freemaptools.com/ajax/get-all-cities-inside.php?lat="
-                + latLong.getLatitude() + "&lng=" + latLong.getLongitude() + "&sortaplha=0&radius=" + radius);
+                + latLong.getLatitude() + "&lng=" + latLong.getLongitude() + "&sortaplha=0&radius=" + r);
         URLConnection urlConnection = url.openConnection();
         urlConnection.setDoOutput(true);
-        urlConnection.setRequestProperty("Host", "www.freemaptools.com");
-        urlConnection.setRequestProperty("Referer", "https://www.freemaptools.com/find-cities-and-towns-inside-radius.htm");
+        urlConnection.setRequestProperty("Host", this.host);
+        urlConnection.setRequestProperty("Referer", this.referer);
 
         urlConnection.connect();
 
-        OutputStream outputStream = urlConnection.getOutputStream();
-        outputStream.write(("{\"entryId\": \"" + "entryId" + "\"}").getBytes("UTF-8"));
-        outputStream.flush();
-
         InputStream inputStream = urlConnection.getInputStream();
         Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
+        this.xmlData = scanner.hasNext() ? scanner.next() : "No data returned";
+    }
 
-        return scanner.hasNext() ? scanner.next() : "No data returned";
+    public String getData() {
+        return this.xmlData;
     }
 }
