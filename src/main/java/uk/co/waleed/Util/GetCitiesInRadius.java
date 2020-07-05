@@ -19,17 +19,18 @@ import java.util.Scanner;
 
 public class GetCitiesInRadius {
     private String cityName;
-    private int radius;
+    private double radius;
 
     public GetCitiesInRadius(String cityName, int radius) {
         this.cityName = cityName;
-        this.radius = radius;
+        this.radius = (1.60934 * radius);
     }
 
     public String getData() throws IOException {
         GetLatLong latLong = new GetLatLong(cityName);
 
-        URL url = new URL("https://www.freemaptools.com/ajax/get-all-cities-inside.php?lat=51.5073219&lng=-0.1276474&sortaplha=0&radius=80.4672");
+        URL url = new URL("https://www.freemaptools.com/ajax/get-all-cities-inside.php?lat="
+                + latLong.getLatitude() + "&lng=" + latLong.getLongitude() + "&sortaplha=0&radius=" + radius);
         URLConnection urlConnection = url.openConnection();
         urlConnection.setDoOutput(true);
         urlConnection.setRequestProperty("Host", "www.freemaptools.com");

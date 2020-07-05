@@ -13,7 +13,8 @@ public class GetLatLong {
     private String longitude;
 
     public GetLatLong(String city) {
-        final String uri = "https://nominatim.openstreetmap.org/search?q=London&format=jsonv2&addressdetails=1";
+        final String uri = "https://nominatim.openstreetmap.org/search?q="
+                + city + "&format=jsonv2&addressdetails=1";
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
