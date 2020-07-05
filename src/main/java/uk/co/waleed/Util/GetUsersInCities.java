@@ -52,7 +52,8 @@ public class GetUsersInCities {
 
             }
         }
-        temp = temp.replace("\n","").replace("[]","").replace("null","");
+        temp = temp.replace("\n","").replace("[]","")
+                .replace("null","");
         result.add(Arrays.asList(temp));
         System.out.println(result);
     }

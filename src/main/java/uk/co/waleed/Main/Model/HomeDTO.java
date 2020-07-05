@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class HomeDTO {
 
     private final long id;
-    private final ArrayList content;
+    private final String content;
 
-    public HomeDTO(long id, ArrayList content) {
+    public HomeDTO(long id, String content) {
         this.id = id;
         this.content = content;
     }
@@ -16,7 +16,7 @@ public class HomeDTO {
         return id;
     }
 
-    public ArrayList getContent() {
+    public String getContent() {
         return content;
     }
 
