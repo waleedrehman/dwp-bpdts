@@ -3,6 +3,7 @@ package uk.co.waleed.Main.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.co.waleed.Main.Model.HomeDTO;
+import uk.co.waleed.Util.GetCitiesInRadius;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -13,6 +14,8 @@ public class HomeController{
 
     @RequestMapping("/")
     public HomeDTO index() {
+        GetCitiesInRadius citiesInRadius = new GetCitiesInRadius("London",50);
+        System.out.println(citiesInRadius.getData());
         return new HomeDTO(counter.incrementAndGet(),"Welcome");
     }
 }
