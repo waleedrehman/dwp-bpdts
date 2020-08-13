@@ -16,7 +16,7 @@ public class HomeController{
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/")
-    public HomeDTO index(@RequestParam(value="cityName", defaultValue="London") String cityName,@RequestParam(value="radius", defaultValue="50") String radius) throws IOException {
+    public HomeDTO index(@RequestParam(value="cityName", defaultValue="London") String cityName,@RequestParam(value="radius", defaultValue="60") String radius) throws IOException {
         GetCitiesInRadius citiesInRadius = new GetCitiesInRadius(cityName,Integer.parseInt(radius));
         System.out.println(citiesInRadius.getData());
         GetUsersInCities users = new GetUsersInCities(citiesInRadius.getData());
