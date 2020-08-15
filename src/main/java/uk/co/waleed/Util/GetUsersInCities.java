@@ -30,7 +30,7 @@ public class GetUsersInCities {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        final String uri = "https://bpdts-test-app-v3.herokuapp.com/city/%city/users";
+        final String uri = "https://bpdts-test-app-v4.herokuapp.com/city/";
 
         //final String uri = "https://nominatim.openstreetmap.org/search?q="
         //        + city + "&format=jsonv2&addressdetails=1";
@@ -47,8 +47,8 @@ public class GetUsersInCities {
             {
                 Element eElement = (Element) node;
                 System.out.println("City name : "    + eElement.getAttribute("name"));
-                temp += restTemplate.getForObject("https://bpdts-test-app-v3.herokuapp.com/city/"
-                        + eElement.getAttribute("name") + "/users",String.class);
+                temp += restTemplate.getForObject(uri + eElement.getAttribute("name")
+                        + "/users",String.class);
 
             }
         }
